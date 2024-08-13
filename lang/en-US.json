@@ -1,0 +1,35 @@
+{
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "username": "Username",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "register_success": "Registration successful. Please log in.",
+    "birthdate": "Birthdate",
+    "sex": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "city": "City",
+    "country": "Country"
+  },
+  "consoleNot": "Do not paste anything in console unless you know what you are doing!",
+  "lang": "Language",
+  "colorMode": {
+    "system": "System",
+    "dark": "Dark",
+    "light": "Light",
+    "theme": "Theme"
+  },
+  "pages": {
+    "landing": {
+      "title": "New social network.",
+      "try": "Try it!"
+    }
+  }
+}
