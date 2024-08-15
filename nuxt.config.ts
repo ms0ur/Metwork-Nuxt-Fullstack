@@ -52,7 +52,7 @@ export default defineNuxtConfig({
       strictMessage: false,
     },
   },
-  //@ts-ignore
+  //@ts-expect-error
   fileStorage: {
     mount: process.env.mount,
   },

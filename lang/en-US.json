@@ -16,7 +16,12 @@
     "female": "Female",
     "other": "Other",
     "city": "City",
-    "country": "Country"
+    "country": "Country",
+    "errors": {
+      "email": "Invalid email address.",
+      "password": "Too weak or too long password.",
+      "required": "This field is required."
+    }
   },
   "consoleNot": "Do not paste anything in console unless you know what you are doing!",
   "lang": "Language",

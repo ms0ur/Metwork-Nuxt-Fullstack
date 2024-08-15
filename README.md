@@ -1,10 +1,12 @@
 # Metwork Fullstack App
+
 New open-source nuxt-based social network project
 
 ## Used technologies, Nuxt modules and packages
+
 - ![VS Code](https://img.shields.io/badge/VS%20Code-black?style=for-the-badge) [![Codeium](https://img.shields.io/badge/Codeium-black?style=for-the-badge&logo=codeium&link=https://codeium.com/)](https://codeium.com/)
 - [![Node.JS](https://img.shields.io/badge/Node.JS-black?style=for-the-badge&logo=nodedotjs&link=https://nodejs.org/en)](https://nodejs.org/en)
-- [![PNPM](https://img.shields.io/badge/PNPM-black?style=for-the-badge&logo=pnpm&link=https://pnpm.io/)](https://pnpm.io/) 
+- [![PNPM](https://img.shields.io/badge/PNPM-black?style=for-the-badge&logo=pnpm&link=https://pnpm.io/)](https://pnpm.io/)
 - [![Nuxt.JS](https://img.shields.io/badge/Nuxt.JS-black?style=for-the-badge&logo=nuxtdotjs&link=https://nuxt.com/)](https://nuxt.com/) [![Vue.JS](https://img.shields.io/badge/Vue.JS-black?style=for-the-badge&logo=vuedotjs&link=https://vuejs.org/)](https://vuejs.org/)
 - [![MongoDB](https://img.shields.io/badge/MongoDB-black?style=for-the-badge&logo=mongodb&link=https://www.mongodb.com/)](https://www.mongodb.com/) with [![Mongoose](https://img.shields.io/badge/Mongoose-black?style=for-the-badge&logo=mongoose&link=http://mongoosejs.com/)](http://mongoosejs.com/)
 - [![UnJS Packages](https://img.shields.io/badge/UnJS%20Packages-black?style=for-the-badge&logo=unjs&link=https://unjs.io/)](https://unjs.io/)
