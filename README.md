@@ -1,5 +1,6 @@
 # Metwork Fullstack App
 New open-source nuxt-based social network project
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/f3883266d0b44923be065ed34fd58467)](https://app.codacy.com/gh/ms0ur/Metwork-Nuxt-Fullstack/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 ## Time
