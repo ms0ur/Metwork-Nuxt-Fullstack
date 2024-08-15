@@ -8,9 +8,9 @@ export default interface User {
   sex: string;
   city: string;
   country: string;
-  description: string;
-  avatar: string;
-  createdAt: Date;
-  lastOnline: Date;
-  isPrivate: boolean;
+  description?: string;
+  avatar?: string;
+  createdAt?: Date;
+  lastOnline?: Date;
+  isPrivate?: boolean;
 }

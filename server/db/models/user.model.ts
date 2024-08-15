@@ -44,22 +44,27 @@ export const UserModel = defineMongooseModel<User>(
     },
     description: {
       type: "string",
+      default: "No description",
       required: true,
     },
     avatar: {
       type: "string",
+      default: "default_avatar.png",
       required: true,
     },
     createdAt: {
       type: Date,
+      default: new Date(),
       required: true,
     },
     lastOnline: {
       type: Date,
+      default: new Date(),
       required: true,
     },
     isPrivate: {
       type: Boolean,
+      default: false,
       required: true,
     },
   },

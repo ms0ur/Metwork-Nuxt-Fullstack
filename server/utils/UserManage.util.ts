@@ -1,48 +1,41 @@
 import User from "../interfaces/user.interface";
+import BError from "../classes/Error";
 import { UserModel } from "../db/models/user.model";
 
-/**
- * Nav:
- * 26:1 - CreateUser
- *
- */
+import bcrypt from "bcrypt";
 
 /**
- * Creates a new user in the database.
  *
- * @param {string} email - The user's email address.
- * @param {string} password - The user's password.
- * @param {string} name - The user's first name.
- * @param {string} surname - The user's last name.
- * @param {string} username - The user's username.
- * @param {Date} birthdate - The user's birthdate.
- * @param {string} sex - The user's sex.
- * @param {string} city - The user's city.
- * @param {string} country - The user's country.
+ * Creates a new user in the database.
+ * @param {User} newuser - The user to create.
  * @return {User | null} The newly created user.
  */
-export async function createUser(
-  email: string,
-  password: string,
-  name: string,
-  surname: string,
-  username: string,
-  birthdate: Date,
-  sex: string,
-  city: string,
-  country: string
-): Promise<User | null> {
+export async function createUser(newuser: User): Promise<User | BError> {
+  if (!newuser)
+    return new BError("errors.server", "Internal server error", 500);
+  if (await getByEmail(newuser.email))
+    return new BError(
+      "errors.userEmailExists",
+      "User with that email already exists",
+      400
+    );
+  if (await getByUsername(newuser.username))
+    return new BError(
+      "errors.userUsernameExists",
+      "User with that username already exists",
+      400
+    );
   try {
     const user = await new UserModel({
-      email,
-      password,
-      name,
-      surname,
-      username,
-      birthdate,
-      sex,
-      city,
-      country,
+      email: newuser.email,
+      password: await bcrypt.hash(newuser.password, 10),
+      name: newuser.name,
+      surname: newuser.surname,
+      username: newuser.username,
+      birthdate: newuser.birthdate,
+      sex: newuser.sex,
+      city: newuser.city,
+      country: newuser.country,
       description: "No description yet.",
       createdAt: new Date(),
       lastOnline: new Date(),
@@ -57,6 +50,39 @@ export async function createUser(
         e +
         "\n" +
         "Called from createUser() in UserManage.util.ts"
+    );
+    return new BError("errors.server", "Internal server error", 500);
+  }
+}
+
+/**
+ * Attempts to log in a user by comparing the provided password with the stored hash.
+ *
+ * @param {string} username - The username of the user to log in.
+ * @param {string} password - The password of the user to log in.
+ * @return {Boolean | null} True if the login is successful, false if the password is incorrect, or null if the user does not exist or an error occurs.
+ */
+export async function loginUser(
+  username: string,
+  password: string
+): Promise<Boolean | null> {
+  try {
+    const user = await UserModel.findOne({ username: username });
+    if (user) {
+      if (await bcrypt.compare(password, user.password)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.error(
+      "Detected error while operating with database: \n" +
+        e +
+        "\n" +
+        "Called from loginUser() in UserManage.util.ts"
     );
     return null;
   }

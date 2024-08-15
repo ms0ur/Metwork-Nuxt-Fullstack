@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { locale, setLocale, t } = useI18n();
 import { vMaska } from "maska/vue";
-import { format } from "date-fns";
+import { format, getUnixTime } from "date-fns";
 import type { FormSubmitEvent } from "#ui/types";
 import { object, string, type InferType } from "yup";
 const colorMode = useColorMode();
@@ -13,11 +13,7 @@ const schema = object({
   password: string()
     .required(t("auth.errors.required"))
     .min(6, t("auth.errors.password"))
-    .max(32, t("auth.errors.password"))
-    .matches(
-      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]$/,
-      t("auth.errors.password")
-    ),
+    .max(32, t("auth.errors.password")),
   name: string().required(t("auth.errors.required")),
   surname: string().required(t("auth.errors.required")),
   username: string().required(t("auth.errors.required")),
@@ -67,8 +63,28 @@ const itemsS = ref([
   },
 ]);
 
-const onSubmit = (event: FormSubmitEvent<any>) => {
-  console.log(event.data);
+const onSubmit = async (event: FormSubmitEvent<any>) => {
+  const { data, status, error } = await useFetch("/api/auth/register", {
+    method: "POST",
+    body: {
+      email: formState.email,
+      password: formState.password,
+      name: formState.name,
+      surname: formState.surname,
+      username: formState.username,
+      birthdate: formState.birthdate,
+      sex: formState.sex,
+      city: formState.city,
+      country: formState.country,
+    },
+  });
+
+  if (status.value == "success") {
+    navigateTo("/auth/login?message=register_success");
+  } else {
+    console.log(error.value);
+    // todo: show error to user
+  }
 };
 </script>
 <template>
@@ -193,6 +209,7 @@ const onSubmit = (event: FormSubmitEvent<any>) => {
             color="violet"
             variant="outline"
             :placeholder="t('auth.city')"
+            v-model="formState.city"
           />
         </UFormGroup>
 
@@ -206,6 +223,7 @@ const onSubmit = (event: FormSubmitEvent<any>) => {
             color="violet"
             variant="outline"
             :placeholder="t('auth.country')"
+            v-model="formState.country"
           />
         </UFormGroup>
       </div>
