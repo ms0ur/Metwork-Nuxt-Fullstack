@@ -1,6 +1,7 @@
 import User from "../interfaces/user.interface";
 import BError from "../classes/Error";
 import { UserModel } from "../db/models/user.model";
+import { ErrorKeys } from "../enums/Error.enum";
 
 import bcrypt from "bcrypt";
 
@@ -12,16 +13,16 @@ import bcrypt from "bcrypt";
  */
 export async function createUser(newuser: User): Promise<User | BError> {
   if (!newuser)
-    return new BError("errors.server", "Internal server error", 500);
+    return new BError(ErrorKeys.server, "Internal server error", 500);
   if (await getByEmail(newuser.email))
     return new BError(
-      "errors.userEmailExists",
+      ErrorKeys.userEmailExists,
       "User with that email already exists",
       400
     );
   if (await getByUsername(newuser.username))
     return new BError(
-      "errors.userUsernameExists",
+      ErrorKeys.userUsernameExists,
       "User with that username already exists",
       400
     );
@@ -43,7 +44,8 @@ export async function createUser(newuser: User): Promise<User | BError> {
     });
 
     await user.save();
-    return user;
+    if (user) return user;
+    else return new BError(ErrorKeys.server, "Internal server error", 500);
   } catch (e) {
     console.error(
       "Detected error while operating with database: \n" +
@@ -51,7 +53,7 @@ export async function createUser(newuser: User): Promise<User | BError> {
         "\n" +
         "Called from createUser() in UserManage.util.ts"
     );
-    return new BError("errors.server", "Internal server error", 500);
+    return new BError(ErrorKeys.server, "Internal server error", 500);
   }
 }
 

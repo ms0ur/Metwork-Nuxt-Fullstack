@@ -4,6 +4,7 @@ import { vMaska } from "maska/vue";
 import { format, getUnixTime } from "date-fns";
 import type { FormSubmitEvent } from "#ui/types";
 import { object, string, type InferType } from "yup";
+import { errorMessages } from "vue/compiler-sfc";
 const colorMode = useColorMode();
 
 const schema = object({
@@ -63,7 +64,11 @@ const itemsS = ref([
   },
 ]);
 
+const errorMessage = ref("");
+const errorOn = ref(false);
+
 const onSubmit = async (event: FormSubmitEvent<any>) => {
+  errorOn.value = false;
   const { data, status, error } = await useFetch("/api/auth/register", {
     method: "POST",
     body: {
@@ -82,7 +87,14 @@ const onSubmit = async (event: FormSubmitEvent<any>) => {
   if (status.value == "success") {
     navigateTo("/auth/login?message=register_success");
   } else {
-    console.log(error.value);
+    // !@ts-expect-error included bc if status.value an error, it's containing an error
+    //@ts-expect-error
+    errorMessage.value =
+      error.value?.message.split(" ")[
+        error.value?.message.split(" ").length - 1
+      ];
+    errorOn.value = true;
+
     // todo: show error to user
   }
 };
@@ -237,6 +249,7 @@ const onSubmit = async (event: FormSubmitEvent<any>) => {
       >
         {{ t("auth.register") }}
       </UButton>
+      <div class="text-red exo" v-if="errorOn">{{ t(errorMessage) }}</div>
     </UForm>
   </div>
 </template>

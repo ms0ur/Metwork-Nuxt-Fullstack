@@ -36,5 +36,12 @@
       "title": "New social network.",
       "try": "Try it!"
     }
+  },
+  "errors": {
+    "server": "Internal server error.",
+    "userEmailExists": "User with this email already exists.",
+    "userUsernameExists": "User with this username already exists.",
+    "userNotFound": "User not found.",
+    "wrongPassword": "Wrong password."
   }
 }

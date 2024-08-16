@@ -1,9 +1,11 @@
+import { ErrorKeys } from "../enums/Error.enum";
+
 export default class BError {
-  public error_key: string;
+  public error_key: ErrorKeys;
   public messageEN: string;
   public statusCode: number;
 
-  constructor(error_key: string, messageEN: string, statusCode: number) {
+  constructor(error_key: ErrorKeys, messageEN: string, statusCode: number) {
     this.error_key = error_key;
     this.messageEN = messageEN;
     this.statusCode = statusCode;
