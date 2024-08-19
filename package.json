@@ -10,10 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@types/engine.io": "^3.1.10",
     "bcrypt": "^5.1.1",
+    "crossws": "^0.2.4",
     "date-fns": "^3.6.0",
+    "jsonwebtoken": "^9.0.2",
     "maska": "^3.0.0",
     "nuxt": "^3.12.4",
+    "socket.io": "^4.7.5",
     "v-calendar": "^3.1.2",
     "vue": "latest",
     "yup": "^1.4.0"
@@ -32,6 +36,7 @@
     "@pinia/nuxt": "^0.5.3",
     "@samk-dev/nuxt-vcalendar": "^1.0.4",
     "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
     "dayjs-nuxt": "^2.1.9",
     "nuxt-aos": "^1.2.5",
     "nuxt-auth-utils": "^0.3.2",

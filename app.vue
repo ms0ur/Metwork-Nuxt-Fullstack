@@ -71,54 +71,76 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="fixed w-screen top-3 z-10">
-    <div v-if="loggedIn && user">
-      <h1>Welcome {{ user.username }}!</h1>
-      <p>Logged in since {{ session.loggedInAt }}</p>
-      <button @click="clear">Logout</button>
-    </div>
-    <div
-      v-else
-      class="flex flex-row items-center justify-center w-full px-6 py-2"
-    >
-      <UCard class="w-full navbar" #header>
-        <div class="flex flex-row justify-between px-5">
-          <h1 class="delta text-3xl">// Metwork //</h1>
-          <div class="flex flex-row gap-8">
-            <div>
-              <UDropdown :items="coloreModeItems" mode="hover">
-                <UButton
-                  class="text-xl"
-                  color="purple"
-                  variant="soft"
-                  :label="`${$t('colorMode.theme')}`"
-                  trailing-icon="i-heroicons-chevron-down-20-solid"
-                />
-              </UDropdown>
+  <AuthState v-slot="{ loggedIn, clear }">
+    <header class="fixed w-screen top-3 z-10">
+      <div
+        v-if="loggedIn && user"
+        class="flex flex-row items-center justify-center w-full px-6 py-2"
+      >
+        <!--<h1>Welcome {{ user.username }}!</h1>
+        <p>Logged in since {{ session.loggedInAt }}</p>
+        <button @click="clear">Logout</button>-->
+        <UCard class="w-full navbar" #header>
+          <div class="flex flex-row justify-between px-5">
+            <h1 class="delta text-3xl">// Metwork //</h1>
+            <div class="flex flex-row justify-between">
+              <div class="flex flex-row gap-5">
+                <NuxtLink to="/home/feed">{{ $t("navbar.feed") }}</NuxtLink>
+              </div>
+              <UButton
+                color="purple"
+                class="navbar__button text-xl"
+                variant="soft"
+              >
+                {{ $t("auth.logoth") }}
+              </UButton>
             </div>
-            <div>
-              <UDropdown :items="changeLangItems" mode="hover">
-                <UButton
-                  class="text-xl"
-                  color="purple"
-                  variant="soft"
-                  :label="`${$t('lang')}`"
-                  trailing-icon="i-heroicons-chevron-down-20-solid"
-                />
-              </UDropdown>
-            </div>
-            <UButton
-              color="purple"
-              class="navbar__button text-xl"
-              variant="soft"
-            >
-              {{ $t("auth.login") }}
-            </UButton>
           </div>
-        </div>
-      </UCard>
-    </div>
-  </header>
+        </UCard>
+      </div>
+      <div
+        v-else
+        class="flex flex-row items-center justify-center w-full px-6 py-2"
+      >
+        <UCard class="w-full navbar" #header>
+          <div class="flex flex-row justify-between px-5">
+            <h1 class="delta text-3xl">// Metwork //</h1>
+            <div class="flex flex-row gap-8">
+              <div>
+                <UDropdown :items="coloreModeItems" mode="hover">
+                  <UButton
+                    class="text-xl"
+                    color="purple"
+                    variant="soft"
+                    :label="`${$t('colorMode.theme')}`"
+                    trailing-icon="i-heroicons-chevron-down-20-solid"
+                  />
+                </UDropdown>
+              </div>
+              <div>
+                <UDropdown :items="changeLangItems" mode="hover">
+                  <UButton
+                    class="text-xl"
+                    color="purple"
+                    variant="soft"
+                    :label="`${$t('lang')}`"
+                    trailing-icon="i-heroicons-chevron-down-20-solid"
+                  />
+                </UDropdown>
+              </div>
+              <UButton
+                color="purple"
+                class="navbar__button text-xl"
+                variant="soft"
+              >
+                {{ $t("auth.login") }}
+              </UButton>
+            </div>
+          </div>
+        </UCard>
+      </div>
+    </header>
+  </AuthState>
   <NuxtPage />
 </template>
 <style>

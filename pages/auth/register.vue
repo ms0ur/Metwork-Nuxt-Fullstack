@@ -3,8 +3,7 @@ const { locale, setLocale, t } = useI18n();
 import { vMaska } from "maska/vue";
 import { format, getUnixTime } from "date-fns";
 import type { FormSubmitEvent } from "#ui/types";
-import { object, string, type InferType } from "yup";
-import { errorMessages } from "vue/compiler-sfc";
+import { number, object, string, type InferType } from "yup";
 const colorMode = useColorMode();
 
 const schema = object({
@@ -26,12 +25,14 @@ const schema = object({
 
 type Schema = InferType<typeof schema>;
 
-const formState = reactive({
+const formState = reactive<Schema>({
   email: "",
   password: "",
   name: "",
   surname: "",
   username: "",
+  // !@ts-expect-error included here bc birthdate is a string(after choosing in the form), but new Date creating number object
+  // @ts-expect-error
   birthdate: new Date().setFullYear(new Date().getFullYear() - 12),
   sex: "",
   city: "",
@@ -184,7 +185,7 @@ const onSubmit = async (event: FormSubmitEvent<any>) => {
               color="violet"
               variant="outline"
               icon="i-heroicons-calendar-days-20-solid"
-              :label="format(formState.birthdate, 'dd.MM.yyyy')"
+              :label="format(Number(formState.birthdate), 'dd.MM.yyyy')"
             />
 
             <template #panel>

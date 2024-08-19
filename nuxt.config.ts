@@ -8,6 +8,17 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  // nitro: {
+  //   experimental: {
+  //     websocket: true,
+  //   },
+  // },
+  serverHandlers: [
+    {
+      route: "/ws",
+      handler: "./server/soket/socket.ts",
+    },
+  ],
   modules: [
     "@pinia/nuxt",
     "@formkit/auto-animate",
@@ -64,5 +75,21 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: "",
+  },
+  pwa: {
+    icon: {
+      source: "~/public/nuxt-icon.png",
+    },
+    manifest: {
+      name: "Metwork",
+      short_name: "Metwork",
+      lang: "en",
+      description: "The new social network",
+      start_url: "/home",
+      useWebmanifestExtension: false,
+      display: "standalone",
+      theme_color: "#ffffff",
+      background_color: "#ffffff",
+    },
   },
 });
