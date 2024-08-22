@@ -4,7 +4,7 @@
       <NewPostShortComponent />
     </div>
     <div>
-      <PostComponent :postID="'1'" />
+      <PostComponent :postID="'66c7589dd7dbd92d77863b7b'" />
     </div>
   </div>
 </template>
