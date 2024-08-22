@@ -1,10 +1,7 @@
-export default interface Post {
-  id: string;
-  user: {
-    id: string;
-    username: string;
-  };
-  media: [string];
+export default interface IPost {
+  id_?: string;
+  userID: string;
+  media?: [string];
   comments: [string];
   likes: [string];
   reposts: [string];
