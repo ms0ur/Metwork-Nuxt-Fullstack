@@ -1,6 +1,5 @@
 import IPost from "../../interfaces/post.interface";
 import BError from "../../classes/Error";
-import { createPost } from "../../utils/PostManage";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
