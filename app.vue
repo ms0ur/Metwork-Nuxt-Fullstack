@@ -80,10 +80,10 @@ onMounted(() => {
         <!--<h1>Welcome {{ user.username }}!</h1>
         <p>Logged in since {{ session.loggedInAt }}</p>
         <button @click="clear">Logout</button>-->
-        <UCard class="w-full navbar" #header>
+        <UCard class="w-full navbar bg-color-x" #header>
           <div class="flex flex-row justify-between px-5">
             <h1 class="delta text-3xl">// Metwork //</h1>
-            <div class="flex flex-row justify-between">
+            <div class="flex flex-row gap-10 items-center justify-between">
               <div class="flex flex-row gap-5">
                 <NuxtLink to="/home/feed">{{ $t("navbar.feed") }}</NuxtLink>
               </div>
@@ -102,7 +102,7 @@ onMounted(() => {
         v-else
         class="flex flex-row items-center justify-center w-full px-6 py-2"
       >
-        <UCard class="w-full navbar" #header>
+        <UCard class="w-full navbar bg-color-x" #header>
           <div class="flex flex-row justify-between px-5">
             <h1 class="delta text-3xl">// Metwork //</h1>
             <div class="flex flex-row gap-8">
@@ -152,10 +152,10 @@ onMounted(() => {
   font-optical-sizing: auto;
   font-style: normal;
 }
-.dark .navbar {
+.dark .bg-color-x {
   background-color: #1a0938 !important;
 }
-.navbar {
+.bg-color-x {
   background-color: #d4bdff !important;
 }
 

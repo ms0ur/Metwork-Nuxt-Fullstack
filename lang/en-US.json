@@ -21,7 +21,8 @@
       "email": "Invalid email address.",
       "password": "Too weak or too long password.",
       "required": "This field is required."
-    }
+    },
+    "logoth": "Logout"
   },
   "consoleNot": "Do not paste anything in console unless you know what you are doing!",
   "lang": "Language",
@@ -43,5 +44,8 @@
     "userUsernameExists": "User with this username already exists.",
     "userNotFound": "User not found.",
     "wrongPassword": "Wrong password."
+  },
+  "navbar": {
+    "feed": "Feed"
   }
 }
