@@ -2,6 +2,13 @@
 const { loggedIn, user, session, fetch, clear } = useUserSession();
 const { locale, setLocale, t } = useI18n();
 const colorMode = useColorMode();
+let isConfigSet = true;
+
+if (!process.env.MONGODB_URI){
+  isConfigSet = false;
+}
+
+isConfigSet = true;
 
 const changeLangItems = [
   [
@@ -71,8 +78,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <AuthState v-slot="{ loggedIn, clear }">
-    <header class="fixed w-screen top-3 z-10">
+  <AuthState v-if="isConfigSet" v-slot="{ loggedIn, clear }">
+    <header class="fixed w-screen top-3 z-50">
       <div
         v-if="loggedIn && user"
         class="flex flex-row items-center justify-center w-full px-6 py-2"
@@ -128,20 +135,25 @@ onMounted(() => {
                   />
                 </UDropdown>
               </div>
-              <UButton
-                color="purple"
-                class="navbar__button text-xl"
-                variant="soft"
-              >
-                {{ $t("auth.login") }}
-              </UButton>
+              <NuxtLink to="/auth/login">
+                <UButton
+                  color="purple"
+                  class="navbar__button text-xl"
+                  variant="soft"
+                >
+                  {{ $t("auth.login") }}
+                </UButton>
+              </NuxtLink>
             </div>
           </div>
         </UCard>
       </div>
     </header>
   </AuthState>
-  <NuxtPage />
+  <NuxtPage v-if="isConfigSet" />
+  <div v-else>
+    <h1 class="text-red-600 text-2xl">.env file is not configured right</h1>
+  </div>
 </template>
 <style>
 .delta {

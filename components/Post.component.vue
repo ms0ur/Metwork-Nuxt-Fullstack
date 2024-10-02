@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="flex flex-col gap-1 justify-between items-center mr-5 my-5">
-      <div class="flex cursor-pointer flex-col items-center">
-        <BootstrapIcon name="heart" />
+      <div @click="likePost" class="flex cursor-pointer flex-col items-center">
+        <Icon ref="like_icon" :name='likeIcon' />
         <p>{{ post.likes.length }}</p>
       </div>
       <div class="flex cursor-pointer flex-col items-center">
@@ -48,28 +48,7 @@
     <div class="h-full flex flex-col gap-3 my-5">
       <h3 class="text-xl">Заголовок поста</h3>
       <p class="text-t">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero natus
-        dolores deserunt quam ipsum ducimus, error ratione architecto,
-        consequatur vitae necessitatibus sint laudantium. Voluptatum deserunt,
-        eaque repellat quod tempora itaque aut ipsa assumenda vero nobis veniam
-        incidunt doloribus neque, eius officiis officia at accusantium facere!
-        Necessitatibus maxime ratione explicabo dolore corrupti quaerat dolores
-        reiciendis, facilis tempore. Voluptate autem atque possimus minima
-        perferendis ex nemo officiis impedit suscipit. Asperiores et, libero
-        incidunt dolore quod numquam dolores? Tempore adipisci accusamus,
-        ratione eveniet quos laboriosam rem nulla commodi perspiciatis minus
-        fugiat, in impedit provident culpa a nemo possimus velit dignissimos
-        itaque quasi suscipit debitis illo laudantium! Deleniti numquam odit
-        obcaecati aliquid quae! Minus deleniti quaerat maiores, eaque laborum
-        aspernatur, illum dolore sit iusto, quia voluptatem ullam maxime
-        similique cupiditate! Molestias, omnis ex. Labore tempore natus ipsum
-        beatae harum consequatur quos id? Quis laboriosam nihil quasi dicta
-        nulla, illo molestias alias consequuntur aut debitis eveniet eius ullam
-        dolores necessitatibus non dolor corporis pariatur nesciunt. Accusamus
-        animi quam, ipsum vel commodi saepe. Ad totam quam minima, assumenda
-        labore nemo incidunt iure excepturi porro ut veritatis nisi aliquam ex
-        accusamus aperiam fuga quibusdam id distinctio, aut architecto voluptas
-        doloribus error dolores? Magnam unde repellat molestias atque.
+
       </p>
       <UButton color="violet" variant="solid" class="w-fit">Read more</UButton>
     </div>
@@ -91,31 +70,47 @@
 </template>
 
 <script lang="ts" setup>
+const {session} = useUserSession();
+const userID = session.value?.user.id
+const likeIcon = ref('ic:baseline-favorite-border');
 const props = defineProps({
   postID: String,
+  post: {}
 });
-
-const post = ref();
-
-const getPost = async () => {
-  console.log(props.postID);
-  const { data, status, error, refresh } = await useFetch(
-    "/api/posts/getPost",
-    {
-      method: "POST",
-      body: {
-        id: props.postID,
-      },
-    }
-  );
-  post.value = data.value;
-};
 
 defineNuxtComponent({
   name: "Post",
 });
 
-await getPost();
+if (userID in props.post?.likes) {
+  likeIcon.value = 'ic:baseline-favorite';
+} else {
+  likeIcon.value = 'ic:baseline-favorite-border';
+}
+
+const likePost = async () => {
+  if (props.postID && props.post) {
+    const {data, status, error, refresh} = await useFetch("/api/posts/editPost", {
+      method: "POST",
+      body: {
+        postID: props.post._id,
+        method: "like",
+        userID: userID
+      },
+    })
+
+    if (status.value == "success") {
+      if (props.post.likes.includes(userID)) {
+        props.post.likes.splice(props.post.likes.indexOf(userID), 1);
+        likeIcon.value = 'ic:baseline-favorite-border';
+      } else {
+        props.post.likes.push(userID);
+        likeIcon.value = 'ic:baseline-favorite';
+      }
+    }
+  }
+}
+
 </script>
 
 <style scoped>

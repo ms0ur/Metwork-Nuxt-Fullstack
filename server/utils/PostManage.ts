@@ -16,6 +16,31 @@ export async function createPost(newPost: IPost): Promise<IPost | BError> {
     return new BError(ErrorKeys.server, "Internal server error", 500);
   }
 }
+export async function addCommentToPost(
+  postID: string,
+  userID: string,
+  comment: { content: string }
+): Promise<Boolean | BError> {
+  try {
+    if (postID && userID && comment) {
+      const post = await PostModel.findById(postID);
+      if (post === null) {
+        return new BError(ErrorKeys.server, "Post not found", 404);
+      }
+      post.comments.push({ userID, ...comment });
+      await post.save();
+      return true;
+    } else return new BError(ErrorKeys.server, "Internal server error", 500);
+  } catch (e) {
+    console.error(
+      "Detected error while operating with database: \n" +
+        e +
+        "\n" +
+        "Called from addCommentToPost() in PostManage.ts"
+    );
+    return new BError(ErrorKeys.server, "Internal server error", 500);
+  }
+}
 
 export async function deletePost(id: string): Promise<Boolean | BError> {
   try {
@@ -29,6 +54,37 @@ export async function deletePost(id: string): Promise<Boolean | BError> {
         e +
         "\n" +
         "Called from deletePost() in PostManage.ts"
+    );
+    return new BError(ErrorKeys.server, "Internal server error", 500);
+  }
+}
+
+export async function likePost(postID: string, userID: string): Promise<Boolean | BError> {
+  try {
+    if (postID && userID) {
+      const post = await PostModel.findById(postID);
+      if (post === null) {
+        return new BError(ErrorKeys.server, "Post not found", 404);
+      }
+      if (post.likes.indexOf(userID) === -1) {
+        post.likes.push(userID);
+        await post.save();
+        return true;
+      } else {
+        const index = post.likes.indexOf(userID);
+        if (index > -1) {
+          post.likes.splice(index, 1);
+        }
+        await post.save();
+        return false;
+      }
+    } else return new BError(ErrorKeys.server, "Internal server error", 500);
+  } catch (e) {
+    console.error(
+      "Detected error while operating with database: \n" +
+        e +
+        "\n" +
+        "Called from likePost() in PostManage.ts"
     );
     return new BError(ErrorKeys.server, "Internal server error", 500);
   }
