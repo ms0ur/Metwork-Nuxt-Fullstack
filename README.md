@@ -14,7 +14,7 @@ New open-source nuxt-based social network project
 ## Used technologies, Nuxt modules and packages
 
 - ![VS Code](https://img.shields.io/badge/VS%20Code-black?style=for-the-badge)
-[![WebStorm](https://img.shields.io/badge/WebStorm-00e1ff?style=for-the-badge&logo=WebStorm&link=https://www.jetbrains.com/webstorm/)](https://www.jetbrains.com/webstorm/) [![Codeium](https://img.shields.io/badge/Codeium-black?style=for-the-badge&logo=codeium&link=https://codeium.com/)](https://codeium.com/)
+[![WebStorm](https://img.shields.io/badge/WebStorm-black?style=for-the-badge&logo=WebStorm&logoColor=00e1ff&link=https://www.jetbrains.com/webstorm/)](https://www.jetbrains.com/webstorm/) [![Codeium](https://img.shields.io/badge/Codeium-black?style=for-the-badge&logo=codeium&link=https://codeium.com/)](https://codeium.com/)
 - [![Node.JS](https://img.shields.io/badge/Node.JS-black?style=for-the-badge&logo=nodedotjs&link=https://nodejs.org/en)](https://nodejs.org/en)
 - [![PNPM](https://img.shields.io/badge/PNPM-black?style=for-the-badge&logo=pnpm&link=https://pnpm.io/)](https://pnpm.io/)
 - [![Nuxt.JS](https://img.shields.io/badge/Nuxt.JS-black?style=for-the-badge&logo=nuxtdotjs&link=https://nuxt.com/)](https://nuxt.com/) [![Vue.JS](https://img.shields.io/badge/Vue.JS-black?style=for-the-badge&logo=vuedotjs&link=https://vuejs.org/)](https://vuejs.org/)
