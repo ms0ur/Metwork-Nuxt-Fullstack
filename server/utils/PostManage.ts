@@ -6,14 +6,14 @@ import { ErrorKeys } from "../enums/Error.enum";
 
 export async function createPost(newPost: IPost): Promise<IPost | BError> {
   if (!newPost) {
-    return new BError(ErrorKeys.server, "Internal server error", 500);
+    return new BError(ErrorKeys.server, "Internal server error + 500.211", 500);
   }
 
   try {
     const post = await PostModel.create(newPost);
     return post;
   } catch (e) {
-    return new BError(ErrorKeys.server, "Internal server error", 500);
+    return new BError(ErrorKeys.server, "Internal server error + 500.212 + " + e, 500); // 500.212 - duplicate key error", 500);
   }
 }
 export async function addCommentToPost(

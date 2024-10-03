@@ -7,6 +7,10 @@ let isConfigSet = true;
 if (!process.env.MONGODB_URI){
   isConfigSet = false;
 }
+const logout = async () => {
+  await clear();
+  await navigateTo("/");
+}
 
 isConfigSet = true;
 
@@ -98,6 +102,7 @@ onMounted(() => {
                 color="purple"
                 class="navbar__button text-xl"
                 variant="soft"
+                @click="logout"
               >
                 {{ $t("auth.logoth") }}
               </UButton>

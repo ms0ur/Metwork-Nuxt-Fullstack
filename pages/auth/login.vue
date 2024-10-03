@@ -29,7 +29,7 @@ const onSubmit = async (event: FormSubmitEvent<any>) => {
   });
 
   if (status.value == "success") {
-    navigateTo("/home");
+    await navigateTo("/home");
   } else {
     // !@ts-expect-error included bc if status.value an error, it's always containing an error
     //@ts-expect-error
