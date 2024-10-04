@@ -47,5 +47,15 @@
   },
   "navbar": {
     "feed": "Feed"
+  },
+  "navigation": {
+    "createpost": "Create post",
+    "home": "Home",
+    "logout": "Log out",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "search": "Search"
   }
 }
