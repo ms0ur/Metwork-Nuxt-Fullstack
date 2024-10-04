@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const text = ref("");
 const title = ref("");
+
 const { locale, setLocale, t } = useI18n();
 const onSubmit = () => {
   console.log("Submit");
