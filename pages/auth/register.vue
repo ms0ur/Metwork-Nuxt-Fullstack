@@ -206,15 +206,16 @@ const onSubmit = async (event: FormSubmitEvent<any>) => {
         </UFormGroup>
 
         <UFormGroup :label="t('auth.sex')" name="sex" required size="lg">
-          <USelect
+          <UInputMenu
             v-model="formState.sex"
             :options="itemsS"
             option-attribute="name"
+            value-attribute="value"
             color="violet"
             variant="outline"
             class=""
           >
-          </USelect>
+          </UInputMenu>
         </UFormGroup>
 
         <UFormGroup :label="t('auth.city')" name="city" required size="lg">
