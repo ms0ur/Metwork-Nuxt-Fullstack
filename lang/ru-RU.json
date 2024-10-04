@@ -47,5 +47,21 @@
   },
   "navbar": {
     "feed": "Лента"
+  },
+  "navigation": {
+    "createpost": "Создать пост",
+    "home": "Главная",
+    "logout": "Выйти",
+    "messages": "Сообщения",
+    "notifications": "Уведомления",
+    "profile": "Профиль",
+    "settings": "Настройки",
+    "search": "Поиск"
+  },
+  "post": {
+    "newpost": "Новый пост",
+    "placeholder": "Напишите что-нибудь...",
+    "text": "Текст поста",
+    "name": "Название поста"
   }
 }

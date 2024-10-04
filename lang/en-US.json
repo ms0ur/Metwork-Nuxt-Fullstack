@@ -47,5 +47,21 @@
   },
   "navbar": {
     "feed": "Feed"
+  },
+  "navigation": {
+    "createpost": "Create post",
+    "home": "Home",
+    "logout": "Log out",
+    "messages": "Messages",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "settings": "Settings",
+    "search": "Search"
+  },
+  "post": {
+    "newpost": "New post",
+    "placeholder": "Type something...",
+    "text": "Post text",
+    "name": "Name of the post"
   }
 }
