@@ -15,10 +15,10 @@
       </p>
 
       <!-- Buttons -->
-      <div class="flex justify-between items-center">
+      <NuxtLink :to="`/post/${props.post._id}`" class="flex justify-between items-center">
         <UButton color="violet" variant="solid" class="w-fit">Read more</UButton>
 
-      </div>
+      </NuxtLink>
       <div>
         <p class="text-sm text-gray-500">Posted by {{ username }}</p>
       </div>
