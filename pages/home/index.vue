@@ -15,6 +15,7 @@
       </UButton>
       <UButton color="violet" variant="solid" class="w-fit">
         <Icon name="ic:baseline-add" />
+        <NuxtLink to="/post/createpost">{{ $t("navigation.createpost") }}</NuxtLink>
       </UButton>
     </div>
 
