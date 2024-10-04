@@ -60,7 +60,7 @@
   },
   "post": {
     "newpost": "New post",
-    "placeholder": "Type something...",
+    "placeholder": "Type something",
     "text": "Post text",
     "name": "Name of the post"
   }
