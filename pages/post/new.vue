@@ -12,11 +12,11 @@ const onSubmit = () => {
 <template>
   <div class="pt-32 flex justify-center items-center">
     <form class="container flex flex-col gap-6">
-      <h3>Новый пост</h3>
+      <h3>{{t('post.new')}}</h3>
       <div>
-        <p>Название поста</p>
+        <p>{{t('post.name')}}</p>
         <UInput
-          placeholder="Название поста"
+          :placeholder="t('post.name')"
           color="violet"
           variant="outline"
           v-model="title"
@@ -24,9 +24,9 @@ const onSubmit = () => {
       </div>
       <div class="media hidden"></div>
       <div class="text flex flex-col gap-2">
-        <p>{{ t("post.text") }}</p>
+        <p>{{t('post.text')}}</p>
         <UTextarea
-          :placeholder="t('pages.placeholder')"
+          :placeholder="t('post.placeholder')"
           color="violet"
           variant="outline"
           autoresize
@@ -35,7 +35,7 @@ const onSubmit = () => {
         ></UTextarea>
       </div>
       <UButton @click="onSubmit" color="violet" variant="solid" class="w-fit"
-        >Опубликовать</UButton
+        >{{t('post.publish')}}</UButton
       >
     </form>
   </div>

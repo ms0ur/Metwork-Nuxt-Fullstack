@@ -59,9 +59,10 @@
     "search": "Search"
   },
   "post": {
-    "newpost": "New post",
-    "placeholder": "Type something",
+    "new": "New post",
+    "placeholder": "Type something...",
     "text": "Post text",
-    "name": "Name of the post"
+    "name": "Name of the post",
+    "publish": "Publish"
   }
 }
