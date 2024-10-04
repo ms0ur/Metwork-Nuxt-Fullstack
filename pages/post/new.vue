@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const text = ref("");
 const title = ref("");
+const { locale, setLocale, t } = useI18n();
 const onSubmit = () => {
   console.log("Submit");
 
@@ -23,9 +24,9 @@ const onSubmit = () => {
       </div>
       <div class="media hidden"></div>
       <div class="text flex flex-col gap-2">
-        <p>Текст поста</p>
+        <p>{{ t("post.text") }}</p>
         <UTextarea
-          placeholder="Текст поста"
+          :placeholder="t('pages.placeholder')"
           color="violet"
           variant="outline"
           autoresize
