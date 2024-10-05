@@ -63,6 +63,8 @@
     "placeholder": "Type something...",
     "text": "Post text",
     "name": "Name of the post",
-    "publish": "Publish"
+    "publish": "Publish",
+    "uploading": "Uploading files",
+    "attach": "Attach photos"
   }
 }

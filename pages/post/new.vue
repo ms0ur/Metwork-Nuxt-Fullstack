@@ -1,9 +1,9 @@
 <template>
   <div class="pt-32 flex justify-center items-center">
     <form class="container flex flex-col gap-6">
-      <h3>Новый пост</h3>
+      <h3>{{t("post.new")}}</h3>
       <div class="media">
-        Прикрепить картинки
+        {{t("post.attach")}}
         <input
             type="file"
             accept="image/*"
@@ -31,9 +31,9 @@
       </div>
 
       <div class="text flex flex-col gap-2">
-        <p>Текст поста</p>
+        <p>{{t("post.text")}}</p>
         <UTextarea
-            placeholder="Текст поста"
+            :placeholder="t('post.text')"
             color="violet"
             variant="outline"
             autoresize
@@ -49,11 +49,11 @@
           class="w-fit"
          :disabled="!text"
           >
-          Опубликовать
+          {{ t("post.publish") }}
         </UButton>
       </NuxtLink>
       <div v-if="uploading" class="mt-4">
-        Загрузка файлов...
+        {{t("post.uploading") }}
         <div v-for="(file, index) in imageFiles" :key="index">
           {{ file.name }} - {{ uploadProgress[index] }}%
         </div>
@@ -63,6 +63,7 @@
 </template>
 
 <script lang="ts" setup>
+const { locale, setLocale, t } = useI18n();
 const text = ref("");
 const { session } = useUserSession();
 const imageFiles = ref<File[]>([]);
