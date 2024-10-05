@@ -59,9 +59,12 @@
     "search": "Search"
   },
   "post": {
-    "newpost": "New post",
+    "new": "New post",
     "placeholder": "Type something...",
     "text": "Post text",
-    "name": "Name of the post"
+    "name": "Name of the post",
+    "publish": "Publish",
+    "uploading": "Uploading files",
+    "attach": "Attach photos"
   }
 }
