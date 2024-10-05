@@ -13,10 +13,12 @@
       <UButton color="violet" variant="solid" class="w-fit">
         <Icon name="ic:baseline-search" />
       </UButton>
-      <UButton color="violet" variant="solid" class="w-fit">
-        <Icon name="ic:baseline-add" />
-        <NuxtLink to="/post/new">{{ $t("navigation.createpost") }}</NuxtLink>
-      </UButton>
+      <NuxtLink to="/post/new">
+        <UButton color="violet" variant="solid" class="w-fit">
+          <Icon name="ic:baseline-add" />
+          {{ $t("navigation.createpost") }}
+        </UButton>
+      </NuxtLink>
     </div>
 
     <!-- Post feed -->
