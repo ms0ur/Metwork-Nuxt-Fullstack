@@ -68,6 +68,7 @@ const imageFiles = ref<File[]>([]);
 const previews = ref<string[]>([]);
 const uploadProgress = ref<number[]>([]); // Для хранения прогресса загрузки
 const uploading = ref(false);
+const route = useRouter()
 
 const fileInput = ref<HTMLInputElement | null>(null);
 
@@ -127,10 +128,6 @@ const onPost = async () => {
   } else {
     console.error(error.value);
   }
-};
-
-const navigateTo = (path: string) => {
-  useNuxtApp().$router.push(path);
 };
 
 </script>
