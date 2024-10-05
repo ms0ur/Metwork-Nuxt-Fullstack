@@ -96,7 +96,7 @@ onMounted(() => {
             <h1 class="delta text-3xl">// Metwork //</h1>
             <div class="flex flex-row gap-10 items-center justify-between">
               <div class="flex flex-row gap-5">
-                <NuxtLink to="/home/feed">{{ $t("navbar.feed") }}</NuxtLink>
+                <NuxtLink to="/home">{{ $t("navbar.feed") }}</NuxtLink>
               </div>
               <UButton
                 color="purple"

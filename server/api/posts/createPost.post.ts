@@ -34,10 +34,15 @@ export default defineEventHandler(async (event) => {
   let mediaUrls: string[] = [];
 
   if (files.media) {
-    const mediaFile = Array.isArray(files.media) ? files.media[0] : files.media;
-    const filename = mediaFile.newFilename;
-    mediaUrls.push(`/uploads/${filename}`);
+    if (Array.isArray(files.media)) {
+      // Обрабатываем все файлы
+      mediaUrls = files.media.map((mediaFile: any) => `/uploads/${mediaFile.newFilename}`);
+    } else {
+      // Если это один файл
+      mediaUrls.push(`/uploads/${files.media.newFilename}`);
+    }
   }
+
 
   console.log('[createPost] Got mediaUrls: ' + mediaUrls);
 
