@@ -41,9 +41,17 @@
             v-model="text"
         ></UTextarea>
       </div>
-      <UButton @click="onPost" color="violet" variant="solid" class="w-fit">
-        Опубликовать
-      </UButton>
+      <NuxtLink to="/home">
+        <UButton 
+          @click="onPost" 
+          color="violet" 
+          variant="solid" 
+          class="w-fit"
+         :disabled="!text"
+          >
+          Опубликовать
+        </UButton>
+      </NuxtLink>
       <div v-if="uploading" class="mt-4">
         Загрузка файлов...
         <div v-for="(file, index) in imageFiles" :key="index">
