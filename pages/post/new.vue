@@ -41,17 +41,15 @@
             v-model="text"
         ></UTextarea>
       </div>
-      <NuxtLink to="/home">
-        <UButton 
-          @click="onPost" 
-          color="violet" 
-          variant="solid" 
-          class="w-fit"
-         :disabled="!text"
-          >
-          {{ t("post.publish") }}
-        </UButton>
-      </NuxtLink>
+       <UButton 
+        @click="onPost" 
+        color="violet" 
+        variant="solid" 
+        class="w-fit" 
+        :disabled="!text"
+         > 
+        {{ t("post.publish") }} 
+      </UButton>
       <div v-if="uploading" class="mt-4">
         {{t("post.uploading") }}
         <div v-for="(file, index) in imageFiles" :key="index">
@@ -125,10 +123,16 @@ const onPost = async () => {
     imageFiles.value = [];
     previews.value = [];
     uploadProgress.value = [];
+    navigateTo('/home');
   } else {
     console.error(error.value);
   }
 };
+
+const navigateTo = (path: string) => {
+  useNuxtApp().$router.push(path);
+};
+
 </script>
 
 <style scoped>
