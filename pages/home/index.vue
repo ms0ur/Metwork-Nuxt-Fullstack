@@ -10,9 +10,15 @@
       <UButton color="violet" @click="refresh" variant="solid" class="w-fit">
         <Icon name="ic:baseline-refresh" />
       </UButton>
-      <UButton color="violet" variant="solid" class="w-fit">
-        <Icon name="ic:baseline-search" />
-      </UButton>
+      <UInput
+        type="text" 
+        class="searchbar" 
+        v-model="searchText" 
+        :placeholder="t('navigation.search')"
+        icon ="ic:baseline-search"
+        color="violet"
+        variant="outline"
+      />
       <NuxtLink to="/post/new">
         <UButton color="violet" variant="solid" class="w-fit">
           <Icon name="ic:baseline-add" />
@@ -37,6 +43,9 @@
 
 <script lang="ts" setup>
 const posts = ref([]);
+const searchText = ref('');
+const { locale, setLocale, t } = useI18n();
+
 
 // Fetch all posts from the API
 async function refresh() {
@@ -69,4 +78,14 @@ await refresh();
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+.searchbar {  
+  width: 40px;
+  transition: width 0.3s ease-in-out;
+}
+.searchbar:focus-within,
+.searchbar:hover{
+  width: 200px;
+}
+
 </style>
