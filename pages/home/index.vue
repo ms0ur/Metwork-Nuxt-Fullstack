@@ -28,8 +28,8 @@
     </div>
 
     <!-- Post feed -->
-    <div v-if="posts.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div v-for="post in posts" :key="post._id" class="w-full">
+    <div v-if="filteredPosts.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div v-for="post in filteredPosts" :key="post._id" class="w-full">
         <PostComponent :postID="post._id" :post="post" />
       </div>
     </div>
@@ -60,6 +60,13 @@ async function refresh() {
 
 // Fetch posts on component mount
 await refresh();
+
+// Computed property to filter posts based on searchText
+const filteredPosts = computed(() => {
+  return posts.value.filter((post) =>
+    post.content.toLowerCase().includes(searchText.value.toLowerCase())
+  );
+});
 </script>
 
 <style scoped>
