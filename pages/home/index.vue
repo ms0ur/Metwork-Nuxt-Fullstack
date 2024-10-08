@@ -10,7 +10,7 @@
       <UButton color="violet" @click="refresh" variant="solid" class="w-fit">
         <Icon name="ic:baseline-refresh" />
       </UButton>
-      <div class="flex flex-row">
+      <div class="flex flex-row" @mouseenter="searchOpen = true" @mouseleave="closesearch()">
         <UButton v-auto-animate color="violet" variant="solid"  class="w-fit flex align-center justify-center flex-row">
           <span @click="searchOpen = !searchOpen"><Icon name="ic:baseline-search" />
           {{ $t("navigation.search") }}</span>
@@ -59,6 +59,12 @@ async function refresh() {
     },
   });
   posts.value = data.value || [];
+}
+
+function closesearch() {
+  if (!searchbox.value) {
+    searchOpen.value = false
+  }
 }
 
 async function searchSend() {
