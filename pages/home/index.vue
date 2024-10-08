@@ -10,8 +10,10 @@
       <UButton color="violet" @click="refresh" variant="solid" class="w-fit">
         <Icon name="ic:baseline-refresh" />
       </UButton>
-      <UButton color="violet" variant="solid" class="w-fit">
+      <UButton color="violet" variant="solid" @click="searchOpenToggle" class="w-fit">
         <Icon name="ic:baseline-search" />
+        {{ $t("navigation.search") }}
+        <UInput v-if="seachOpen" color="violet" variant="outline" placeholder="Search..." />
       </UButton>
       <NuxtLink to="/post/new">
         <UButton color="violet" variant="solid" class="w-fit">
@@ -36,6 +38,11 @@
 </template>
 
 <script lang="ts" setup>
+const searchOpen = ref(false);
+const searchOpenToggle = () => {
+  searchOpen.value = !searchOpen.value;
+}
+
 const posts = ref([]);
 
 // Fetch all posts from the API

@@ -20,25 +20,18 @@ const username = ref(userData?.value?.username || "Unavailable");
 </script>
 
 <template>
-  <div class="container pt-56 mx-auto p-4">
-    <div class="bg-white rounded-lg shadow-lg p-6 space-y-6 md:flex md:space-y-0 md:space-x-6">
-      <!-- Media Slider -->
-      <div class="w-full md:w-2/3">
-        <MediaSliderComponent :images="data.media" />
+  <div class="flex flex-col justify-center align-center">
+    <div class="grid grid-cols-2 grid-rows-1 gap-4 pt-36 pl-10 pr-10 container">
+      <div class="h-full">
+        <MediaSliderComponent class="h-full w-auto" :images="data.media" />
+
       </div>
-
-      <!-- Content -->
-      <div class="w-full md:w-1/3 space-y-4">
-        <!-- Заголовок поста -->
-        <h1 class="text-2xl font-bold text-gray-800">{{ data.title || "Заголовок поста" }}</h1>
-
-        <!-- Контент поста -->
-        <p class="text-gray-600">{{ data.content || "Контент поста..." }}</p>
-
-        <!-- Дата и имя пользователя -->
-        <p class="text-sm text-gray-500">
-          Posted by <span class="font-semibold">{{ username }}</span> on {{ new Date(data.createdAt).toDateString('ru-RU') }}
+      <div>
+        <h1>title</h1>
+        <p>
+          {{data.content}}
         </p>
+        <p>Posted by <b>{{username}}</b> at <span class="text-gray-400">{{new Date(data.createdAt).toLocaleString()}}</span></p>
       </div>
     </div>
 
@@ -52,5 +45,9 @@ const username = ref(userData?.value?.username || "Unavailable");
 </template>
 
 <style scoped>
+.grid{
+  height: 75vh;
+}
+
 /* Дополнительные стили можно добавить по необходимости */
 </style>
