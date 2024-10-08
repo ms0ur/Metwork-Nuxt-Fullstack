@@ -10,11 +10,16 @@
       <UButton color="violet" @click="refresh" variant="solid" class="w-fit">
         <Icon name="ic:baseline-refresh" />
       </UButton>
-      <UButton color="violet" variant="solid" @click="searchOpenToggle" class="w-fit">
-        <Icon name="ic:baseline-search" />
-        {{ $t("navigation.search") }}
-        <UInput v-if="seachOpen" color="violet" variant="outline" placeholder="Search..." />
-      </UButton>
+      <div class="flex flex-row">
+        <UButton color="violet" variant="solid"  class="w-fit flex align-center justify-center flex-row">
+          <span @click="searchOpen = !searchOpen"><Icon name="ic:baseline-search" />
+          {{ $t("navigation.search") }}</span>
+          <div>
+            <input v-if="searchOpen" type="text" @input="searchSend" :placeholder="$t('navigation.search')" v-model="searchbox" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-0 shadow-sm bg-violet-300 text-gray-900 dark:text-white ring-1 ring-inset ring-violet-600 dark:ring-violet-500 focus:ring-2 focus:ring-violet-700 dark:focus:ring-violet-600"/>
+          </div>
+        </UButton>
+
+      </div>
       <NuxtLink to="/post/new">
         <UButton color="violet" variant="solid" class="w-fit">
           <Icon name="ic:baseline-add" />
@@ -39,11 +44,11 @@
 
 <script lang="ts" setup>
 const searchOpen = ref(false);
-const searchOpenToggle = () => {
-  searchOpen.value = !searchOpen.value;
-}
+
 
 const posts = ref([]);
+
+const searchbox=ref('');
 
 // Fetch all posts from the API
 async function refresh() {
@@ -56,6 +61,20 @@ async function refresh() {
   posts.value = data.value || [];
 }
 
+async function searchSend() {
+  if (searchbox.value) {
+    const { data } = await useFetch("/api/posts/searchPosts", {
+      method: "POST",
+      body: {
+        query: searchbox.value
+      },
+    })
+    posts.value = data.value || [];
+  } else {
+    await refresh();
+  }
+}
+
 // Fetch posts on component mount
 await refresh();
 </script>
@@ -63,6 +82,9 @@ await refresh();
 <style scoped>
 .container {
   max-width: 1200px;
+}
+
+.inputt{
 }
 
 @media (min-width: 768px) {

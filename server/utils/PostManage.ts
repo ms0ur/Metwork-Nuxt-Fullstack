@@ -1,8 +1,8 @@
 import IPost from "../interfaces/post.interface";
-import { PostModel } from "../db/models/post.model";
+import {PostModel} from "../db/models/post.model";
 
 import BError from "../classes/Error";
-import { ErrorKeys } from "../enums/Error.enum";
+import {ErrorKeys} from "../enums/Error.enum";
 
 export async function createPost(newPost: IPost): Promise<IPost | BError> {
   if (!newPost) {
@@ -14,6 +14,22 @@ export async function createPost(newPost: IPost): Promise<IPost | BError> {
     return post;
   } catch (e) {
     return new BError(ErrorKeys.server, "Internal server error + 500.212 + " + e, 500); // 500.212 - duplicate key error", 500);
+  }
+}
+export async function searchPosts(
+  query: string): Promise<IPost[] | BError> {
+  try {
+    if (query) {
+      return await PostModel.find({content: {$regex: query, $options: "i"}});
+    } else return new BError(ErrorKeys.server, "Internal server error", 500);
+  } catch (e) {
+    console.error(
+        "Detected error while operating with database: \n" +
+        e +
+        "\n" +
+        "Called from searchPosts() in PostManage.ts"
+    );
+    return new BError(ErrorKeys.server, "Internal server error", 500);
   }
 }
 export async function addCommentToPost(
