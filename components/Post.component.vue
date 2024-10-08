@@ -10,7 +10,7 @@
       <h3 class="text-xl font-semibold truncate">{{ post.title }}</h3>
 
       <!-- Truncated content with ellipsis -->
-      <p class="text-t text-justify line-clamp-3">
+      <p class="text-t text-justify line-clamp-3 w-full">
         {{ post.content }}
       </p>
 
@@ -129,6 +129,7 @@ const likePost = async () => {
 /* Tailwind custom styles */
 .text-t {
   max-width: 100%;
+  word-break: break-all;
 }
 
 .line-clamp-3 {

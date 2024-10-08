@@ -2,7 +2,7 @@
   <div class="max-h-full" v-if="images.length > 0">
     <!-- Условие для отображения одной картинки без слайдера -->
     <div v-if="images.length === 1" class="relative flex align-center justify-center h-full">
-      <div class="h-full w-auto flex align-center justify-center absolute" @click="isOpen = true" >
+      <div class="h-full w-auto flex align-center justify-center absolute" @click="isOpen1 = true" >
         <NuxtImg
             :src="images[0]"
             alt="Slider Image"
@@ -13,29 +13,7 @@
             class="rounded-lg"
         />
       </div>
-      <UModal  v-model="isOpen" fullscreen class="overflow-hidden relative max-h-screen p-0">
-        <Icon name="material-symbols:close-rounded" class="absolute right-2 top-0 cursor-pointer self-center size-12" @click="isOpen = false" />
-        <div class="flex flex-row justify-around align-center">
 
-          <div class="p-0 relative  flex justify-center align-center">
-            <NuxtImg
-                :src="images[0]"
-                alt="Slider Image"
-                loading="lazy"
-                format="webp"
-                placeholder
-                :height="height"
-                width="auto"
-                densities="x1 x2"
-                fit="inside"
-
-                class="rounded-lg"
-            />
-
-          </div>
-
-        </div>
-      </UModal>
     </div>
     <!-- Слайдер для нескольких картинок -->
     <div v-else class="relative flex align-center justify-center h-full">
@@ -111,6 +89,7 @@ const props = defineProps({
 })
 
 const isOpen = ref(false);
+const isOpen1 = ref(false);
 
 const height = computed(() => {
   return window.innerHeight
